@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+
+{%block title%}表单{%endblock%}
+
+{%block content%}
+{{super()}}
+<h1>请填写地址</h1>
+<form method="POST" action="/theform">
+    <input type="text" name="name"><br><br>
+    <input type="text" name="location"><br><br>
+    <input type="submit" value="输入">
+</form>
+{%endblock%}

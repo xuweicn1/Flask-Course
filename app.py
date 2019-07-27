@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, redirect, url_for, session
+from flask import Flask, jsonify, request, redirect, url_for, session,render_template
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'This is a secret'
@@ -14,7 +14,7 @@ def index():
 @app.route('/home/<string:name>', methods=['POST', 'GET'])
 def home(name):
     session['name'] = name
-    return '<h1>你好:{}，<br>现在是主页</h1>'.format(name)
+    return render_template('home.html',name=name,disply=True,mylist=['one','two','three'],mydict=[{'name':'张五','location':'北京'},{'name':'赵六','location':'上海'}])
 
 
 @app.route('/json')
@@ -63,11 +63,7 @@ def process():
 @app.route('/theform', methods=['POST', 'GET'])
 def theform():
     if request.method == 'GET':
-        return '''<form method="POST" action="/theform">
-                    <input type="text" name="name"><br><br>
-                    <input type="text" name="location"><br><br>
-                    <input type="submit" value="输入">
-                    </form>'''
+        return render_template('form.html')
     else:
         name = request.form['name']
         location = request.form['location']
