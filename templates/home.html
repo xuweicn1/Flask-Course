@@ -5,18 +5,26 @@
 {%block content%}
 {{super()}}
 <h1>你好:{{name}}，现在是主页</h1>
+
+{% for item in results%}
+<h2>ID :{{item.id}} , Name:{{item.name}} ,Location:{{item.location}} </h2>
+{%endfor%}
+
 {% if disply %}
 <h2>这个将被展示</h2>
 {% else%}
 <h2>这个不会被展示</h2>
 {% endif%}
+
 {% for x in mylist%}
 <h3>{{x}}</h3>
 {%endfor%}
+
 {% for x in mydict%}
 <h3>{{x.name}}</h3>
 <h3>{{x['location']}}</h3>
 {%endfor%}
+
 <img src="{{ url_for('static',filename='img/bee.png')}}">
 
 {% include 'include_this.html'%}
